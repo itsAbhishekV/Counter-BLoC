@@ -1,3 +1,4 @@
+import 'package:bloc_counter_app/bloc/counter_bloc.dart';
 import 'package:bloc_counter_app/cubit/counter_cubit.dart';
 import 'package:bloc_counter_app/inc_dec_page.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counterCubit = BlocProvider.of<CounterCubit>(context);
+    // final counterCubit = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter App with BLoC'),
@@ -21,15 +22,13 @@ class HomeScreen extends StatelessWidget {
               'Counter',
               style: TextStyle(fontSize: 24),
             ),
-            BlocBuilder<CounterCubit, int>(
-                bloc: counterCubit,
-                builder: (context, counter) {
-                  return Text(
-                    '$counter',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  );
-                }),
+            BlocBuilder<CounterBloc, int>(builder: (context, counter) {
+              return Text(
+                '$counter',
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              );
+            }),
           ],
         ),
       ),
